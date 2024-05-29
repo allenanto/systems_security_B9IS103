@@ -1,9 +1,11 @@
-Requirements
+# CorporateTalks
+
+## Requirements:
 1. User Registration and Authentication.
 2. Public/Private Key Generation.
 3. Message Encryption and Decryption.
 
-Key Technologies
+## Technologies:
 1. Flask : Web server framework for Python.
 2. SQLite3
 3. RSA: Asymmetric encryption for key exchange.
