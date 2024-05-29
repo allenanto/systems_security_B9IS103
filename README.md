@@ -1,5 +1,7 @@
 # CorporateTalks
 
+Report Link : https://docs.google.com/document/d/1QOKJrRItncJrDML6k0QS4_N_zKOfRem85c9gMR-zO0E/edit?usp=sharing
+
 ## Requirements:
 1. User Registration and Authentication.
 2. Public/Private Key Generation.
