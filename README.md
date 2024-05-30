@@ -2,6 +2,12 @@
 
 Report Link : https://docs.google.com/document/d/1QOKJrRItncJrDML6k0QS4_N_zKOfRem85c9gMR-zO0E/edit?usp=sharing
 
+##Group Members:
+Allen Kurisingal Antony : 20029101
+Edwin Jaison : 20023740
+Tharunsai Gangineni Somasekhar : 20026027
+Swaya Krishna Chittyan Sukumaran : 20026139
+
 ## Requirements:
 1. User Registration and Authentication.
 2. Public/Private Key Generation.
