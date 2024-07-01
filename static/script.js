@@ -5,8 +5,12 @@ $(document).ready(function(){
         socket.send("connection_successful");
     });
 
-    $('sendBtn').on('click', function(){
-        console.log("message send:");
-        socket.send($('#username').val() + ': ' + $('#message').val());
-    })
+    socket.on('message', function(message){
+        $('#messages').append($('<p>').text(message));
+    });
+
+    $('#sendBtn').on('click', function(){
+        console.log("Message send");
+        socket.send($('#username').text() + ': ' + $('#message').val());
+    });
 });
