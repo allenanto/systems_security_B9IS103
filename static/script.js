@@ -10,6 +10,7 @@ $(document).ready(function(){
     });
 
     $('sendBtn').on('click', function(){
+        console.log("message send:"+ $('#username').val())
         socket.send($('#username').val() + ': ' + $('#message').val());
     })
 });

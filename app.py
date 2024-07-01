@@ -4,7 +4,7 @@ import config
 
 config = config.CONFIG
 app = Flask(__name__)
-app.config['SECRET'] = "secret!123" #for trial purpose using this will be changed later
+app.config['SECRET'] = config['SECRET'] #for trial purpose using this will be changed later
 socketio = SocketIO(app, cors_allowed_origin='*')
 
 @app.route('/')
