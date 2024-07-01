@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CorporateTalks</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-    <h3>Hello</h3>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat Screen</h3>
+        </div>
+        <div class="chat-body">
+            <div class="chat-input">
+                <label id="username">Username</label>
+                <input type="text" id="message">
+                <button id="sendBtn">Send</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
