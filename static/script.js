@@ -12,5 +12,6 @@ $(document).ready(function(){
     $('#sendBtn').on('click', function(){
         console.log("Message send");
         socket.send($('#username').text() + ': ' + $('#message').val());
+        $('#message').val('');
     });
 });
