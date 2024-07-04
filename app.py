@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, send
 import config
 
@@ -10,6 +10,14 @@ socketio = SocketIO(app, cors_allowed_origin='*')
 @app.route('/')
 def index():
     return render_template("index.html")
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        return redirect('/')
+    return render_template('register.html')
 
 @socketio.on('message')
 def handle_message(message):
