@@ -1,14 +1,18 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send
-import config
+from flask_pymongo import PyMongo
+from config import Config
 
-config = config.CONFIG
+
 app = Flask(__name__)
-app.config['SECRET'] = config['SECRET'] #for trial purpose using this will be changed later
+app.config.from_object(Config)
 socketio = SocketIO(app, cors_allowed_origin='*')
+mongo = PyMongo(app)
+print(mongo)
 
 @app.route('/')
 def index():
+    print(mongo.db.users.find())
     return render_template("index.html")
 
 @socketio.on('message')
