@@ -22,6 +22,7 @@ def create_user(name, email, mobile, password):
             cursor.execute("INSERT INTO users (name, email, mobile, password) VALUES (?, ?, ?, ?)",
                            (name, email, mobile, password))
             conn.commit()
+            conn.close()
             print("User added")
 
 # if __name__ == "__main__":

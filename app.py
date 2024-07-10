@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, send
+from werkzeug.security import generate_password_hash
 from config import Config
+import db_interface as DB
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -14,11 +16,15 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        username = request.form['name']
+        name = request.form['name']
         email = request.form['email']
         mobno = request.form['mobno']
         password = request.form['password']
-        print(username, email, mobno, password)
+        hashed_password = generate_password_hash(password)
+
+        # print(name, email, mobno, password, hashed_password)
+        DB.create_user(name, email, mobno, hashed_password)
+
         return redirect('/')
     return render_template('register.html')
 
