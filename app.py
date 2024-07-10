@@ -18,7 +18,9 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['name']
+        email = request.form['email']
+        mobno = request.form['mobno']
         password = request.form['password']
         return redirect('/')
     return render_template('register.html')
