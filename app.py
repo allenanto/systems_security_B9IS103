@@ -33,8 +33,10 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        DB.verify_user(email,password)
-        return redirect('/login')
+        if DB.verify_user(email,password):
+            return redirect('/')
+        else:
+            return redirect('/login')
     return render_template('login.html')
 
 @socketio.on('message')

@@ -29,7 +29,11 @@ def verify_user(email, password):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM users WHERE email=?", (email,))
     user = cursor.fetchone()
-    print(user)
+    if user:
+        return True
+    else:
+        return False
+    # print(user)
 
 # if __name__ == "__main__":
 #     init_db()
