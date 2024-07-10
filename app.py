@@ -1,9 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, send
-from flask_pymongo import PyMongo
 from config import Config
-import pymongo
-
 
 app = Flask(__name__)
 app.config.from_object(Config)
