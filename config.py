@@ -1,3 +1,4 @@
 class Config:
     SECRET="SECRET"
-    MONGO_URI="mongodb+srv://allenantony26:antony007@cluster0.anlxuzy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    DATABASE_NAME="Chatapp"
+    MONGODB_HOST="mongodb+srv://allenantony26:allenanto@cluster0.anlxuzy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"

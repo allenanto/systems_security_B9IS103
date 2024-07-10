@@ -1,13 +1,18 @@
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, send
 from config import Config
+from flask_mongoengine import MongoEngine
 
 app = Flask(__name__)
 app.config.from_object(Config)
+db = MongoEngine()
+db.init_app(app)
+
 socketio = SocketIO(app, cors_allowed_origin='*')
 
 @app.route('/')
 def index():
+    print(db)
     return render_template("index.html")
 
 @app.route('/register', methods=['GET', 'POST'])
