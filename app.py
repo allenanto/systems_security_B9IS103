@@ -31,9 +31,10 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
+        email = request.form['email']
         password = request.form['password']
-        return redirect('/')
+        DB.verify_user(email,password)
+        return redirect('/login')
     return render_template('login.html')
 
 @socketio.on('message')
