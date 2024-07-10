@@ -2,17 +2,15 @@ from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, send
 from flask_pymongo import PyMongo
 from config import Config
+import pymongo
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
 socketio = SocketIO(app, cors_allowed_origin='*')
-mongo = PyMongo(app)
-print(mongo)
 
 @app.route('/')
 def index():
-    print(mongo.db.users.find())
     return render_template("index.html")
 
 @app.route('/register', methods=['GET', 'POST'])
