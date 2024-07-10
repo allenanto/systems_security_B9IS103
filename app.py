@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, send
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from config import Config
 import db_interface as DB
 
@@ -33,10 +33,9 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        if DB.verify_user(email,password):
+        valid, user = DB.verify_user(email,password)
+        if valid and check_password_hash(user[4], password):
             return redirect('/')
-        else:
-            return redirect('/login')
     return render_template('login.html')
 
 @socketio.on('message')

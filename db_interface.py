@@ -30,9 +30,9 @@ def verify_user(email, password):
     cursor.execute("SELECT * FROM users WHERE email=?", (email,))
     user = cursor.fetchone()
     if user:
-        return True
+        return True,user
     else:
-        return False
+        return False,[]
     # print(user)
 
 # if __name__ == "__main__":
