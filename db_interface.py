@@ -13,17 +13,17 @@ def init_db():
             password TEXT NOT NULL
         )
     ''')
-
+    conn.close()
     print("Db createdn")
 
 def create_user(name, email, mobile, password):
-    with sqlite3.connect('corptalk.db') as conn:
-            cursor = conn.cursor()
-            cursor.execute("INSERT INTO users (name, email, mobile, password) VALUES (?, ?, ?, ?)",
-                           (name, email, mobile, password))
-            conn.commit()
-            conn.close()
-            print("User added")
+    conn = sqlite3.connect('corptalk.db')
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO users (name, email, mobile, password) VALUES (?, ?, ?, ?)",
+                    (name, email, mobile, password))
+    conn.commit()
+    conn.close()
+
 
 # if __name__ == "__main__":
 #     init_db()

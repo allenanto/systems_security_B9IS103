@@ -6,8 +6,8 @@ import db_interface as DB
 
 app = Flask(__name__)
 app.config.from_object(Config)
-
 socketio = SocketIO(app, cors_allowed_origin='*')
+DB.init_db()
 
 @app.route('/')
 def index():
