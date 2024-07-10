@@ -25,7 +25,7 @@ def register():
         # print(name, email, mobno, password, hashed_password)
         DB.create_user(name, email, mobno, hashed_password)
 
-        return redirect('/')
+        return redirect('/login')
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
