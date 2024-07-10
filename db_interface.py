@@ -16,7 +16,13 @@ def init_db():
 
     print("Db createdn")
 
-def create_user()
+def create_user(name, email, mobile, password):
+    with sqlite3.connect('corptalk.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO users (name, email, mobile, password) VALUES (?, ?, ?, ?)",
+                           (name, email, mobile, password))
+            conn.commit()
+            print("User added")
 
-if __name__ == "__main__":
-    init_db()
+# if __name__ == "__main__":
+#     init_db()
