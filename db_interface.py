@@ -42,6 +42,6 @@ def select_user(userid):
     user = cursor.fetchone()
     conn.close()
     return user
-
+    
 # if __name__ == "__main__":
 #     init_db()
