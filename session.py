@@ -1,0 +1,2 @@
+class Session:
+    user:None
