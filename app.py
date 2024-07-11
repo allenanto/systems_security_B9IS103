@@ -13,6 +13,7 @@ ses.user = None
 
 @app.route('/')
 def index():
+    print(ses.user)
     if ses.user:
         return render_template("index.html")
     else:
@@ -40,6 +41,7 @@ def login():
         password = request.form['password']
         valid, user = DB.verify_user(email,password)
         if valid and check_password_hash(user[4], password):
+            ses.user=user
             return redirect('/')
     return render_template('login.html')
 
