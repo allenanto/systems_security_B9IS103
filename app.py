@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, send
-from flask_login import LoginManager
+from flask_login import LoginManager, UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import Config
 import db_interface as DB
@@ -14,6 +14,14 @@ DB.init_db()
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+
+class User(UserMixin):
+    def __init__(self, id, name, email, mobile, password):
+        self.id = id
+        self.name = name
+        self.email = email
+        self.mobile = mobile
+        self.password = password
 
 @app.route('/')
 def index():
