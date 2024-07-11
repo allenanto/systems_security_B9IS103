@@ -29,11 +29,19 @@ def verify_user(email, password):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM users WHERE email=?", (email,))
     user = cursor.fetchone()
+    conn.close()
     if user:
         return True,user
     else:
         return False,[]
-    # print(user)
+    
+def select_user(userid):
+    conn = sqlite3.connect('corptalk.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM users WHERE id=?", (userid,))
+    user = cursor.fetchone()
+    conn.close()
+    return user
 
 # if __name__ == "__main__":
 #     init_db()
