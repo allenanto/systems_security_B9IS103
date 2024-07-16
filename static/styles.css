@@ -9,3 +9,39 @@ body {
     height: 100vh;
     margin: 0;
 }
+
+.chat-container {
+    max-width: 600px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+.chat-body {
+    padding: 15px;
+    height: 400px;
+    overflow-y: scroll;
+    border-bottom: 1px solid #ccc;
+}
+#messages {
+    list-style-type: none;
+    padding: 0;
+}
+.chat-input {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+#message {
+    flex: 1;
+    margin-right: 10px;
+}
+#username {
+    margin-right: 10px;
+}
