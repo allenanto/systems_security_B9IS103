@@ -51,6 +51,7 @@ def handle_message(message):
     if message == "connection_successful":
         pass
     else:
+        print(message)
         send(message, broadcast=True)
 
 if __name__ == "__main__":
