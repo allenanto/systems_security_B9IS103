@@ -29,6 +29,13 @@ body {
     overflow-y: scroll;
     border-bottom: 1px solid #ccc;
 }
+
+.chat-input {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
 #messages {
     list-style-type: none;
     padding: 0;
