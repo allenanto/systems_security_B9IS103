@@ -39,7 +39,7 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        valid, user = DB.verify_user(email,password)
+        valid, user = DB.verify_user(email)
         if valid and check_password_hash(user[4], password):
             ses.user=user
             return redirect('/')

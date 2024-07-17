@@ -24,7 +24,7 @@ def create_user(name, email, mobile, password):
     conn.commit()
     conn.close()
 
-def verify_user(email, password):
+def verify_user(email):
     conn = sqlite3.connect('corptalk.db')
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM users WHERE email=?", (email,))
