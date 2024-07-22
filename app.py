@@ -13,9 +13,9 @@ ses.user = None
 
 @app.route('/')
 def index():
-    print(ses.user)
     if ses.user:
-        return render_template("index.html")
+        print(ses.user[1])
+        return render_template("index.html", user=user)
     else:
         return render_template("login.html")
 
