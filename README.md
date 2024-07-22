@@ -18,3 +18,6 @@ Report Link : https://docs.google.com/document/d/1QOKJrRItncJrDML6k0QS4_N_zKOfRe
 2. SQLite3
 3. RSA: Asymmetric encryption for key exchange.
 4. AES: Symmetric encryption for message encryption.
+
+## References:
+1. https://www.youtube.com/watch?v=AMp6hlA8xKA
