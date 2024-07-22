@@ -15,7 +15,7 @@ ses.user = None
 def index():
     if ses.user:
         print(ses.user[1])
-        return render_template("index.html", user=user)
+        return render_template("index.html", user=ses.user[1])
     else:
         return render_template("login.html")
 
