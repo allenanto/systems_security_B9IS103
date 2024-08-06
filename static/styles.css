@@ -17,6 +17,32 @@ body {
     border-radius: 10px;
     overflow: hidden;
 }
+.user-status-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f8f9fa;
+}
+.user-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+    cursor: pointer;
+}
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
 .chat-header {
     background-color: #007bff;
     color: white;
