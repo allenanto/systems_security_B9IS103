@@ -43,5 +43,14 @@ def select_user(userid):
     conn.close()
     return user
     
+def get_all_users():
+    conn = sqlite3.connect('corptalk.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT name, email FROM users")
+    users = cursor.fetchall()
+    conn.close()
+    return users
+
+
 # if __name__ == "__main__":
 #     init_db()

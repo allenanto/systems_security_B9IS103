@@ -10,22 +10,25 @@
     <script src="/static/script.js"></script>
 </head>
 <body>
-    <div class="chat-container">
+    <div class="container chat-container">
+        <div class="user-status-container">
+            {% for user in users %}
+            <div class="user-status">
+                <div class="user-avatar">{{ user[0][0] }}</div>
+                <div class="username">{{ user[0] }}</div>
+            </div>
+            {% endfor %}
+        </div>
         <div class="chat-header">
-            <h2>Chat Screen</h3>
+            <h2>Chat Screen</h2>
         </div>
         <div class="chat-body">
-            <div class="chat-input">
-                <div id="messages">
-
-                </div>
-                <!-- Need to change this later -->
-                <div class="chat-input">
-                <label id="username">{{ user }}</label> 
-                <input type="text" id="message">
-                <button id="sendBtn">Send</button>
-                </div>
-            </div>
+            <div id="messages"></div>
+        </div>
+        <div class="chat-input">
+            <label id="username">{{ user }}</label> 
+            <input type="text" id="message" class="form-control" placeholder="Type your message...">
+            <button id="sendBtn" class="btn btn-primary">Send</button>
         </div>
     </div>
 </body>

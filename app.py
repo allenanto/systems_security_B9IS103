@@ -15,7 +15,8 @@ ses.user = None
 def index():
     if ses.user:
         print(ses.user[1])
-        return render_template("index.html", user=ses.user[1])
+        users = DB.get_all_users()
+        return render_template("index.html", users=users, user=ses.user[1])
     else:
         return render_template("login.html")
 
@@ -28,7 +29,6 @@ def register():
         password = request.form['password']
         hashed_password = generate_password_hash(password)
 
-        # print(name, email, mobno, password, hashed_password)
         DB.create_user(name, email, mobno, hashed_password)
 
         return redirect('/login')
