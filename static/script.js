@@ -17,3 +17,21 @@ $(document).ready(function(){
         $('#message').val('');
     });
 });
+
+function handleChatHeadClick(userName, userEmail) {
+    if (confirm(`Do you want to send an email to ${userName}?`)) {
+        $.ajax({
+            url: '/send-email',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ email: userEmail }),
+            success: function(response) {
+                alert(response.message);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error sending email:', error);
+                alert('Failed to send email. Please try again later.');
+            }
+        });
+    }
+}
