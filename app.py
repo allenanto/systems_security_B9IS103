@@ -18,6 +18,7 @@ ses.user = None
 publickey=None
 privtekey=None
 chat_users = []
+session = {}
 
 @app.route('/')
 def index():
@@ -50,8 +51,10 @@ def login():
         password = request.form['password']
         valid, user = DB.verify_user(email)
         if valid and check_password_hash(user[4], password):
-            ses.user=user
             privtekey,publickey = generate_keys()
+            session[user[2]] = {'userdetails': {'id': user[0], 'name': user[1], 'email': user[2]}, 'privatekey': privtekey, 'publickey': publickey}
+            print(session)
+            ses.user=user
             return redirect('/')
     return render_template('login.html')
 
