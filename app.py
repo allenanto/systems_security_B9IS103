@@ -17,6 +17,7 @@ ses.user = None
 
 publickey=None
 privtekey=None
+chat_users = []
 
 @app.route('/')
 def index():
@@ -58,14 +59,17 @@ def login():
 def send_email():
     data = request.get_json()
     recipient_email = data.get('email')
-    if recipient_email:
+    if recipient_email and recipient_email not in chat_users:
         print(recipient_email)
-        subject = 'Test mail'
-        message = 'This is your secret key'
-        msg = Message(subject, sender=Config.MAIL_USERNAME, recipients=[recipient_email])
-        msg.body = message
-        mail.send(msg)
-        
+        try:
+            subject = 'CorpTalks : Confidential'
+            message = 'This is your secret key \n\n' + publickey
+            msg = Message(subject, sender=Config.MAIL_USERNAME, recipients=[recipient_email])
+            msg.body = message
+            mail.send(msg)
+            chat_users.append(recipient_email)
+        except Exception as e:
+            print("Exception : ", str(e))
     return redirect('/')
 
 @socketio.on('message')
