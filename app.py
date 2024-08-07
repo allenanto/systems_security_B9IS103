@@ -4,6 +4,7 @@ from flask_mail import Mail, Message
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import Config
 import db_interface as DB
+from keys import generate_keys
 from session import Session as ses
 
 app = Flask(__name__)
@@ -44,6 +45,7 @@ def login():
         valid, user = DB.verify_user(email)
         if valid and check_password_hash(user[4], password):
             ses.user=user
+            generate_keys()
             return redirect('/')
     return render_template('login.html')
 
