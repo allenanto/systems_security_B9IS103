@@ -12,7 +12,11 @@ app.config.from_object(Config)
 socketio = SocketIO(app, cors_allowed_origin='*')
 mail = Mail(app)
 DB.init_db()
+
 ses.user = None
+
+publickey=None
+privtekey=None
 
 @app.route('/')
 def index():
@@ -39,13 +43,14 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    global privtekey, publickey
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
         valid, user = DB.verify_user(email)
         if valid and check_password_hash(user[4], password):
             ses.user=user
-            generate_keys()
+            privtekey,publickey = generate_keys()
             return redirect('/')
     return render_template('login.html')
 
