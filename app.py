@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 from flask_socketio import SocketIO, send
 from flask_mail import Mail, Message
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -63,13 +63,15 @@ def send_email():
         print(recipient_email)
         try:
             subject = 'CorpTalks : Confidential'
-            message = 'This is your secret key \n\n' + publickey
+            message = 'This is your secret key \n\n' + publickey.decode('utf-8')
             msg = Message(subject, sender=Config.MAIL_USERNAME, recipients=[recipient_email])
             msg.body = message
             mail.send(msg)
             chat_users.append(recipient_email)
+            return jsonify({'message': 'Email sent successfully'}), 200
         except Exception as e:
             print("Exception : ", str(e))
+            return jsonify({'error': str(e)}), 500
     return redirect('/')
 
 @socketio.on('message')
