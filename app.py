@@ -45,6 +45,14 @@ def login():
             return redirect('/')
     return render_template('login.html')
 
+@app.route('/send-email', methods=['POST'])
+def send_email():
+    data = request.get_json()
+    recipient_email = data.get('email')
+    if recipient_email:
+        print(recipient_email)
+    return redirect('/')
+
 @socketio.on('message')
 def handle_message(message):
     print("Message: " + message)
