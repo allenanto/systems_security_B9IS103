@@ -55,7 +55,7 @@ def send_email():
         print(recipient_email)
         subject = 'Test mail'
         message = 'This is your secret key'
-        msg = Message(subject, recipients=[recipient_email])
+        msg = Message(subject, sender=Config.MAIL_USERNAME, recipients=[recipient_email])
         msg.body = message
         mail.send(msg)
         
