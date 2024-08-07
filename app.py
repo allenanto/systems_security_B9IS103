@@ -14,7 +14,7 @@ mail = Mail(app)
 DB.init_db()
 
 ses.user = None
-
+currentuser=None
 publickey=None
 privtekey=None
 chat_users = []
@@ -22,10 +22,13 @@ session = {}
 
 @app.route('/')
 def index():
-    if ses.user:
-        print(ses.user[1])
+    global currentuser
+    temp_user = currentuser
+    currentuser = None
+    print(currentuser)
+    if temp_user:
         users = DB.get_all_users()
-        return render_template("index.html", users=users, user=ses.user[1])
+        return render_template("index.html", users=users, user=temp_user)
     else:
         return render_template("login.html")
 
@@ -45,7 +48,7 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    global privtekey, publickey
+    global privtekey, publickey, currentuser
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -53,8 +56,8 @@ def login():
         if valid and check_password_hash(user[4], password):
             privtekey,publickey = generate_keys()
             session[user[2]] = {'userdetails': {'id': user[0], 'name': user[1], 'email': user[2]}, 'privatekey': privtekey, 'publickey': publickey}
-            print(session)
-            ses.user=user
+            currentuser=user[1]
+            print(session)  
             return redirect('/')
     return render_template('login.html')
 
