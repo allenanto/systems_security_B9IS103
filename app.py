@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, send
-from flask_mail import Mail
+from flask_mail import Mail, Message
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import Config
 import db_interface as DB
@@ -53,6 +53,12 @@ def send_email():
     recipient_email = data.get('email')
     if recipient_email:
         print(recipient_email)
+        subject = 'Test mail'
+        message = 'This is your secret key'
+        msg = Message(subject, recipients=[recipient_email])
+        msg.body = message
+        mail.send(msg)
+        
     return redirect('/')
 
 @socketio.on('message')
