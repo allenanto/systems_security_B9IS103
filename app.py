@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, send
+from flask_mail import Mail
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import Config
 import db_interface as DB
@@ -8,6 +9,7 @@ from session import Session as ses
 app = Flask(__name__)
 app.config.from_object(Config)
 socketio = SocketIO(app, cors_allowed_origin='*')
+mail = Mail(app)
 DB.init_db()
 ses.user = None
 
