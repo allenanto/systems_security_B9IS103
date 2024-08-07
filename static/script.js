@@ -18,6 +18,7 @@ $(document).ready(function(){
     });
 });
 
+// Code segment logic taken from ChatGtp
 function handleChatHeadClick(userName, userEmail) {
     if (confirm(`Do you want to send an email to ${userName}?`)) {
         $.ajax({
