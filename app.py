@@ -6,6 +6,8 @@ from config import Config
 import db_interface as DB
 from keys import generate_keys
 from session import Session as ses
+import random
+import string
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -55,7 +57,7 @@ def register():
         try:
             subject = 'CorpTalks : Confidential'
             message = 'This is your OTP \n\n' + otp
-            msg = Message(subject, sender=Config.MAIL_USERNAME, recipients=[recipient_email])
+            msg = Message(subject, sender=Config.MAIL_USERNAME, recipients=[email])
             msg.body = message
             mail.send(msg)
             return redirect('/verify-otp')
@@ -108,7 +110,7 @@ def verify_otp():
     if request.method == 'POST':
         entered_otp = request.form['otp']
         if 'otp' in register_user and entered_otp == register_user['otp']:
-            DB.create_user(user_data['name'], user_data['email'], user_data['mobno'], user_data['hashed_password'])
+            DB.create_user(register_user['name'], register_user['email'], register_user['mobno'], register_user['hashed_password'])
             return redirect('/login')
         else:
             return 'Invalid OTP', 400
