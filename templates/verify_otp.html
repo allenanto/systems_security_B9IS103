@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify OTP</title>
+    <!-- Bootstrap CSS for the application-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2>Verify Your Email</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="/verify-otp" method="POST">
+                            <div class="form-group">
+                                <label for="otp">Enter OTP:</label>
+                                <input type="text" id="otp" name="otp" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Verify</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        <small>Didn't receive the code? <a href="#">Resend OTP</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -19,6 +19,7 @@ publickey=None
 privtekey=None
 chat_users = []
 session = {}
+register_user = {}
 
 @app.route('/')
 def index():
@@ -34,12 +35,33 @@ def index():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    global register_user
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         mobno = request.form['mobno']
         password = request.form['password']
         hashed_password = generate_password_hash(password)
+        otp = generate_otp()
+
+        register_user = {
+            'name': name,
+            'email': email,
+            'mobno': mobno,
+            'hashed_password': hashed_password,
+            'otp':otp
+        }
+
+        try:
+            subject = 'CorpTalks : Confidential'
+            message = 'This is your OTP \n\n' + otp
+            msg = Message(subject, sender=Config.MAIL_USERNAME, recipients=[recipient_email])
+            msg.body = message
+            mail.send(msg)
+            return redirect('/verify-otp')
+        except Exception as e:
+            print("Exception : ", str(e))
+            return jsonify({'error': str(e)}), 500
 
         DB.create_user(name, email, mobno, hashed_password)
 
@@ -80,6 +102,18 @@ def send_email():
             return jsonify({'error': str(e)}), 500
     return redirect('/')
 
+@app.route('/verify-otp', methods=['GET', 'POST'])
+def verify_otp():
+    global register_user
+    if request.method == 'POST':
+        entered_otp = request.form['otp']
+        if 'otp' in register_user and entered_otp == register_user['otp']:
+            DB.create_user(user_data['name'], user_data['email'], user_data['mobno'], user_data['hashed_password'])
+            return redirect('/login')
+        else:
+            return 'Invalid OTP', 400
+    return render_template('verify_otp.html')
+
 @socketio.on('message')
 def handle_message(message):
     print("Message: " + message)
@@ -88,6 +122,10 @@ def handle_message(message):
     else:
         print(message)
         send(message, broadcast=True)
+
+def generate_otp(length=6):
+    digits = string.digits
+    return ''.join(random.choices(digits, k=length))
 
 if __name__ == "__main__":
     socketio.run(app, host='0.0.0.0', port=5000)
