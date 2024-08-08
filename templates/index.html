@@ -11,10 +11,6 @@
 </head>
 <body>
     <div class="container chat-container">
-        <div class="key-input-container">
-            <input type="text" id="keyInput" class="form-control" placeholder="Enter your key...">
-            <button id="validateKeyBtn" class="btn btn-primary">Validate Key</button>
-        </div>
         <div class="user-status-container">
             {% for user in users %}
             <div class="user-status" onclick="handleChatHeadClick('{{ user[0] }}', '{{ user[1] }}')">
