@@ -1,6 +1,7 @@
 # CorporateTalks
 
 Report Link : https://docs.google.com/document/d/1QOKJrRItncJrDML6k0QS4_N_zKOfRem85c9gMR-zO0E/edit?usp=sharing
+Render Link: https://corptalks.onrender.com
 
 ## Group Members:
 1. Allen Kurisingal Antony : 20029101
