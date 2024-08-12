@@ -20,9 +20,6 @@ Render Link: https://corptalks.onrender.com
 3. RSA: Asymmetric encryption for key exchange. (Pycryptodome)
 4. AES: Symmetric encryption for message encryption.
 
-## References:
-1. https://www.youtube.com/watch?v=AMp6hlA8xKA
-
 ## Packages used:
 1. Flask==3.0.3
 2. Flask-SocketIO==5.3.6
