@@ -21,3 +21,12 @@ Report Link : https://docs.google.com/document/d/1QOKJrRItncJrDML6k0QS4_N_zKOfRe
 
 ## References:
 1. https://www.youtube.com/watch?v=AMp6hlA8xKA
+
+## Packages used:
+1. Flask==3.0.3
+2. Flask-SocketIO==5.3.6
+3. Flask-Mail==0.10.0
+4. Werkzeug==3.0.2
+5. pycryptodome==3.14.1
+6. eventlet==0.36.1
+7. python-dotenv==0.19.2

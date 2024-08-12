@@ -92,6 +92,7 @@ def send_email():
     if recipient_email and recipient_email not in chat_users:
         print(recipient_email)
         try:
+            # Reference taken from: https://flask-mail.readthedocs.io/en/latest/
             subject = 'CorpTalks : Confidential'
             message = 'This is your secret key \n\n' + publickey.decode('utf-8')
             msg = Message(subject, sender=Config.MAIL_USERNAME, recipients=[recipient_email])
@@ -116,6 +117,9 @@ def verify_otp():
             return 'Invalid OTP', 400
     return render_template('verify_otp.html')
 
+
+#Reference https://python-socketio.readthedocs.io/en/stable/
+#Reference taken from https://www.youtube.com/watch?v=whEObh8waxg
 @socketio.on('message')
 def handle_message(message):
     print("Message: " + message)
